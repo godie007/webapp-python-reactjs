@@ -1,58 +1,58 @@
-# 📖 Guía de Desarrollo - WebApp Python
+# 📖 Development Guide - WebApp Python
 
-> **Guía completa para desarrolladores que quieren contribuir o extender el template**
+> **Complete guide for developers who want to contribute or extend the template**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 
-## 📋 Tabla de Contenidos
+## 📋 Table of Contents
 
-- [🎯 Introducción](#-introducción)
-- [🛠️ Configuración del Entorno](#️-configuración-del-entorno)
-- [🏗️ Arquitectura del Código](#️-arquitectura-del-código)
+- [🎯 Introduction](#-introduction)
+- [🛠️ Environment Setup](#️-environment-setup)
+- [🏗️ Code Architecture](#️-code-architecture)
 - [🎨 Frontend Development](#-frontend-development)
 - [🔧 Backend Development](#-backend-development)
-- [📊 Base de Datos](#-base-de-datos)
+- [📊 Database](#-database)
 - [🧪 Testing](#-testing)
 - [🔍 Debugging](#-debugging)
-- [📦 Build y Deploy](#-build-y-deploy)
-- [🤝 Contribución](#-contribución)
+- [📦 Build and Deploy](#-build-and-deploy)
+- [🤝 Contribution](#-contribution)
 
-## 🎯 Introducción
+## 🎯 Introduction
 
-Esta guía está diseñada para desarrolladores que quieren entender, extender o contribuir al template **WebApp Python**. Cubre todos los aspectos del desarrollo, desde la configuración inicial hasta el despliegue en producción.
+This guide is designed for developers who want to understand, extend, or contribute to the **WebApp Python** template. It covers all aspects of development, from initial setup to production deployment.
 
-### 🎯 Objetivos de la Guía
+### 🎯 Guide Objectives
 
-- ✅ **Entender la arquitectura** del proyecto
-- ✅ **Configurar el entorno** de desarrollo
-- ✅ **Desarrollar nuevas funcionalidades** siguiendo las mejores prácticas
-- ✅ **Mantener la calidad** del código
-- ✅ **Contribuir efectivamente** al proyecto
+- ✅ **Understand the architecture** of the project
+- ✅ **Set up the development** environment
+- ✅ **Develop new features** following best practices
+- ✅ **Maintain code quality**
+- ✅ **Contribute effectively** to the project
 
-## 🛠️ Configuración del Entorno
+## 🛠️ Environment Setup
 
-### **Prerrequisitos del Sistema**
+### **System Prerequisites**
 
-#### **Software Requerido**
+#### **Required Software**
 ```bash
-# Node.js (versión LTS)
+# Node.js (LTS version)
 node --version  # >= 18.0.0
 
-# Python (versión 3.9+)
+# Python (version 3.9+)
 python --version  # >= 3.9.0
 
 # Git
 git --version  # >= 2.30.0
 
-# npm o yarn
+# npm or yarn
 npm --version  # >= 8.0.0
 ```
 
-#### **Herramientas Recomendadas**
-- **VS Code** con extensiones:
+#### **Recommended Tools**
+- **VS Code** with extensions:
   - TypeScript and JavaScript Language Features
   - Python
   - Tailwind CSS IntelliSense
@@ -61,24 +61,24 @@ npm --version  # >= 8.0.0
   - Auto Rename Tag
   - Bracket Pair Colorizer
 
-### **Configuración Inicial**
+### **Initial Setup**
 
-#### **1. Clonar y Configurar**
+#### **1. Clone and Configure**
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/your-username/webapp-python.git
 cd webapp-python
 
-# Instalar dependencias frontend
+# Install frontend dependencies
 cd frontend
 npm install
 
-# Instalar dependencias backend
+# Install backend dependencies
 cd ../backend
 pip install -r requirements.txt
 ```
 
-#### **2. Variables de Entorno**
+#### **2. Environment Variables**
 ```bash
 # Backend
 cp backend/env.example backend/.env
@@ -87,255 +87,180 @@ cp backend/env.example backend/.env
 cp frontend/.env.example frontend/.env
 ```
 
-#### **3. Configurar Base de Datos**
+#### **3. Configure Database**
 ```bash
-# Crear base de datos local (opcional)
+# Create local database (optional)
 createdb webapp_python_dev
 
-# O usar Supabase
-# 1. Crear proyecto en Supabase
-# 2. Obtener DATABASE_URL
-# 3. Configurar en backend/.env
+# Or use Supabase
+# 1. Create project in Supabase
+# 2. Get DATABASE_URL
+# 3. Configure in backend/.env
 ```
 
-### **Scripts de Desarrollo**
+### **Development Scripts**
 
-#### **Scripts Frontend**
+#### **Quick Start**
 ```bash
-# Desarrollo
-npm run dev          # Servidor de desarrollo
-npm run build        # Build de producción
-npm run preview      # Preview del build
-npm run lint         # Linting
-npm run lint:fix     # Auto-fix linting
-npm run type-check   # Verificación de tipos
+# Start both frontend and backend
+./start-dev.ps1  # Windows PowerShell
+./start-dev.bat  # Windows Command Prompt
 ```
 
-#### **Scripts Backend**
+#### **Manual Start**
 ```bash
-# Desarrollo
-python main.py       # Servidor de desarrollo
-python -m pytest     # Ejecutar tests
-python -m pytest --cov=app  # Tests con coverage
+# Terminal 1 - Backend
+cd backend
+python main.py
+
+# Terminal 2 - Frontend
+cd frontend
+npm run dev
 ```
 
-## 🏗️ Arquitectura del Código
+## 🏗️ Code Architecture
 
-### **Estructura del Proyecto**
-
+### **Project Structure**
 ```
 webapp-python/
-├── 📁 frontend/                    # Aplicación React
-│   ├── 📁 src/
-│   │   ├── 📁 components/          # Componentes reutilizables
-│   │   │   ├── 📄 Header.tsx       # Header principal
-│   │   │   ├── 📄 LoginForm.tsx    # Formulario de login
-│   │   │   ├── 📄 RegisterForm.tsx # Formulario de registro
-│   │   │   ├── 📄 Dashboard.tsx    # Dashboard principal
-│   │   │   ├── 📄 UserProfile.tsx  # Perfil de usuario
-│   │   │   └── 📄 Toast.tsx        # Notificaciones
-│   │   ├── 📁 services/            # Servicios de API
-│   │   │   └── 📄 api.ts           # Cliente HTTP
-│   │   ├── 📁 types/               # Definiciones TypeScript
-│   │   │   └── 📄 api.ts           # Tipos de API
-│   │   ├── 📁 utils/               # Utilidades
-│   │   ├── 📄 App.tsx              # Componente principal
-│   │   ├── 📄 main.tsx             # Punto de entrada
-│   │   └── 📄 index.css            # Estilos globales
-│   ├── 📁 public/                  # Assets estáticos
-│   ├── 📄 package.json             # Dependencias
-│   ├── 📄 vite.config.ts           # Configuración Vite
-│   ├── 📄 tailwind.config.js       # Configuración Tailwind
-│   └── 📄 vercel.json              # Configuración Vercel
-├── 📁 backend/                     # API FastAPI
-│   ├── 📁 app/
-│   │   ├── 📁 models/              # Modelos de datos
-│   │   │   ├── 📄 auth_models.py   # Modelos de autenticación
-│   │   │   └── 📄 user_models.py   # Modelos de usuario
-│   │   ├── 📁 services/            # Lógica de negocio
-│   │   │   ├── 📄 auth_service.py  # Servicio de auth
-│   │   │   ├── 📄 token_service.py # Servicio de tokens
-│   │   │   └── 📄 user_service.py  # Servicio de usuarios
-│   │   ├── 📁 repositories/        # Acceso a datos
-│   │   │   ├── 📄 auth_repository.py
-│   │   │   └── 📄 user_repository.py
-│   │   ├── 📁 utils/               # Utilidades
-│   │   │   └── 📄 dependencies.py  # Dependencias FastAPI
-│   │   └── 📄 main.py              # Aplicación principal
-│   ├── 📄 requirements.txt          # Dependencias Python
-│   └── 📄 main.py                  # Punto de entrada
-└── 📁 docs/                        # Documentación
+├── frontend/                 # React + TypeScript + Vite
+│   ├── src/
+│   │   ├── components/      # React components
+│   │   ├── services/        # API services
+│   │   ├── types/          # TypeScript types
+│   │   └── utils/          # Utility functions
+│   ├── public/             # Static assets
+│   └── package.json
+├── backend/                 # FastAPI + Python
+│   ├── app/
+│   │   ├── models/         # Pydantic models
+│   │   ├── services/       # Business logic
+│   │   └── utils/          # Utilities
+│   ├── main.py            # FastAPI application
+│   └── requirements.txt
+├── docs/                   # Documentation
+└── vercel.json            # Vercel configuration
 ```
 
-### **Patrones de Diseño**
+### **Technology Stack**
 
-#### **Frontend Patterns**
-- **Component-Based Architecture**: Componentes reutilizables
-- **Custom Hooks**: Lógica reutilizable
-- **Service Layer**: Separación de lógica de negocio
-- **Type Safety**: TypeScript para todo el código
+#### **Frontend**
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **Axios** - HTTP client
+- **React Hook Form** - Form handling
+- **React Hot Toast** - Notifications
 
-#### **Backend Patterns**
-- **Repository Pattern**: Acceso a datos abstracto
-- **Service Layer**: Lógica de negocio
-- **Dependency Injection**: Inyección de dependencias
-- **Model-View-Controller**: Separación de responsabilidades
+#### **Backend**
+- **FastAPI** - Web framework
+- **Python 3.9+** - Programming language
+- **Pydantic** - Data validation
+- **PyJWT** - JWT authentication
+- **Uvicorn** - ASGI server
+- **Supabase** - Database (optional)
 
 ## 🎨 Frontend Development
 
-### **Tecnologías Frontend**
+### **Component Structure**
 
-#### **React 18 con TypeScript**
+#### **Component Guidelines**
 ```typescript
-// Ejemplo de componente funcional
-interface UserProfileProps {
-  user: User;
-  onUpdate: (user: User) => void;
+// ✅ Good component structure
+interface ComponentProps {
+  title: string;
+  onAction: () => void;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ user, onUpdate }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  
+export const Component: React.FC<ComponentProps> = ({ title, onAction }) => {
   return (
-    <div className="card-elevated">
-      <h2 className="text-display">{user.name}</h2>
-      {/* Componente JSX */}
+    <div className="component">
+      <h1>{title}</h1>
+      <button onClick={onAction}>Action</button>
     </div>
   );
 };
 ```
 
-#### **Tailwind CSS**
-```css
-/* Clases utilitarias */
-.panel-elevated {
-  @apply bg-white rounded-lg shadow-lg border border-gray-200 p-6;
-}
-
-.btn-primary {
-  @apply bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors;
-}
-```
-
-### **Gestión de Estado**
-
-#### **React Hooks**
+#### **State Management**
 ```typescript
-// Custom hook para autenticación
-const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+// Use React hooks for local state
+const [data, setData] = useState<DataType[]>([]);
+const [loading, setLoading] = useState(false);
 
-  const login = async (credentials: LoginCredentials) => {
-    try {
-      setLoading(true);
-      const response = await api.login(credentials);
-      setUser(response.user);
-      localStorage.setItem('token', response.token);
-    } catch (error) {
-      toast.error('Error al iniciar sesión');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { user, loading, login, logout };
-};
-```
-
-#### **Context API**
-```typescript
-// AuthContext para estado global
+// Use context for global state
 const AuthContext = createContext<AuthContextType | null>(null);
+```
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const auth = useAuth();
+### **Styling Guidelines**
+
+#### **Tailwind CSS Classes**
+```typescript
+// ✅ Consistent class ordering
+<div className="
+  flex items-center justify-between
+  p-4 bg-white rounded-lg shadow-md
+  hover:shadow-lg transition-shadow
+  dark:bg-gray-800 dark:text-white
+">
+```
+
+#### **Responsive Design**
+```typescript
+// Mobile-first approach
+<div className="
+  w-full md:w-1/2 lg:w-1/3
+  p-2 md:p-4 lg:p-6
+">
+```
+
+### **API Integration**
+
+#### **Service Layer**
+```typescript
+// services/api.ts
+export const apiService = {
+  login: async (credentials: LoginRequest): Promise<LoginResponse> => {
+    const response = await apiClient.post('/login', credentials);
+    return response.data;
+  },
   
-  return (
-    <AuthContext.Provider value={auth}>
-      {children}
-    </AuthContext.Provider>
-  );
+  register: async (userData: RegisterRequest): Promise<RegisterResponse> => {
+    const response = await apiClient.post('/register', userData);
+    return response.data;
+  }
 };
 ```
 
-### **Formularios y Validación**
-
-#### **React Hook Form + Yup**
+#### **Error Handling**
 ```typescript
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-const schema = yup.object({
-  email: yup.string().email('Email inválido').required('Email requerido'),
-  password: yup.string().min(8, 'Mínimo 8 caracteres').required('Contraseña requerida'),
-});
-
-const LoginForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
-  });
-
-  const onSubmit = (data: LoginFormData) => {
-    // Lógica de envío
-  };
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group">
-        <label className="form-label">Email</label>
-        <input {...register('email')} className="form-input" />
-        {errors.email && <span className="form-error">{errors.email.message}</span>}
-      </div>
-    </form>
-  );
-};
-```
-
-### **Ruteo y Navegación**
-
-#### **React Router v6**
-```typescript
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route 
-          path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route path="/" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+// Handle API errors consistently
+try {
+  const data = await apiService.login(credentials);
+  // Handle success
+} catch (error) {
+  if (error.response?.status === 401) {
+    // Handle unauthorized
+  } else {
+    // Handle other errors
+  }
+}
 ```
 
 ## 🔧 Backend Development
 
-### **FastAPI Framework**
+### **FastAPI Structure**
 
-#### **Estructura de Endpoints**
+#### **Main Application**
 ```python
-from fastapi import FastAPI, Depends, HTTPException
+# main.py
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(
-    title="WebApp Python API",
-    description="API profesional para aplicaciones web",
-    version="1.0.0"
-)
+app = FastAPI(title="WebApp API", version="1.0.0")
 
-# Configuración CORS
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -343,261 +268,202 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Endpoints
-@app.get("/api/health")
-async def health_check():
-    return {"status": "healthy", "timestamp": datetime.now()}
-
-@app.post("/api/auth/login")
-async def login(credentials: LoginRequest):
-    # Lógica de autenticación
-    pass
 ```
 
-#### **Modelos Pydantic**
+#### **Model Definitions**
 ```python
-from pydantic import BaseModel, EmailStr, validator
+# models/user.py
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 class UserCreate(BaseModel):
     email: EmailStr
+    username: str
     password: str
-    name: str
-    
-    @validator('password')
-    def validate_password(cls, v):
-        if len(v) < 8:
-            raise ValueError('Password must be at least 8 characters')
-        return v
 
 class UserResponse(BaseModel):
     id: int
     email: str
-    name: str
-    created_at: datetime
-    
-    class Config:
-        from_attributes = True
+    username: str
+    is_active: bool
 ```
 
-#### **Autenticación JWT**
+### **Authentication System**
+
+#### **JWT Implementation**
 ```python
-from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+# utils/auth.py
 import jwt
+from datetime import datetime, timedelta
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=30)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def verify_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+```
+
+#### **Protected Routes**
+```python
+# dependencies.py
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer
 
 security = HTTPBearer()
 
-def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(token: str = Depends(security)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    
     try:
-        payload = jwt.decode(
-            credentials.credentials, 
-            JWT_SECRET, 
-            algorithms=[JWT_ALGORITHM]
-        )
-        user_id = payload.get("sub")
+        payload = verify_token(token.credentials)
+        user_id: str = payload.get("sub")
         if user_id is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token"
-            )
-        return user_id
-    except jwt.PyJWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token"
-        )
-
-@app.get("/api/protected")
-async def protected_route(current_user: int = Depends(get_current_user)):
-    return {"message": "This is a protected route", "user_id": current_user}
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    
+    return {"user_id": user_id}
 ```
 
-### **Servicios y Lógica de Negocio**
+### **Database Integration**
 
-#### **Service Layer Pattern**
+#### **Supabase Setup**
 ```python
-class AuthService:
-    def __init__(self, user_repository: UserRepository):
-        self.user_repository = user_repository
-    
-    async def authenticate_user(self, email: str, password: str) -> Optional[User]:
-        user = await self.user_repository.get_by_email(email)
-        if user and self.verify_password(password, user.password_hash):
-            return user
-        return None
-    
-    def create_access_token(self, user: User) -> str:
-        payload = {
-            "sub": str(user.id),
-            "email": user.email,
-            "exp": datetime.utcnow() + timedelta(hours=24)
-        }
-        return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
-    
-    def verify_password(self, plain_password: str, hashed_password: str) -> bool:
-        return bcrypt.verify(plain_password, hashed_password)
-```
-
-#### **Repository Pattern**
-```python
-class UserRepository:
-    def __init__(self, db: Database):
-        self.db = db
-    
-    async def create(self, user_data: UserCreate) -> User:
-        query = """
-            INSERT INTO users (email, password_hash, name, created_at)
-            VALUES (:email, :password_hash, :name, :created_at)
-            RETURNING id, email, name, created_at
-        """
-        values = {
-            "email": user_data.email,
-            "password_hash": self.hash_password(user_data.password),
-            "name": user_data.name,
-            "created_at": datetime.utcnow()
-        }
-        
-        result = await self.db.fetch_one(query, values)
-        return User(**result)
-    
-    async def get_by_email(self, email: str) -> Optional[User]:
-        query = "SELECT * FROM users WHERE email = :email"
-        result = await self.db.fetch_one(query, {"email": email})
-        return User(**result) if result else None
-```
-
-## 📊 Base de Datos
-
-### **Supabase Integration**
-
-#### **Configuración**
-```python
-# backend/app/config/database.py
+# database.py
 from supabase import create_client, Client
-from os import getenv
 
-SUPABASE_URL = getenv("SUPABASE_URL")
-SUPABASE_KEY = getenv("SUPABASE_KEY")
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+# User operations
+def create_user(user_data: dict):
+    return supabase.table("users").insert(user_data).execute()
+
+def get_user_by_email(email: str):
+    return supabase.table("users").select("*").eq("email", email).execute()
 ```
 
-#### **Modelos de Base de Datos**
+## 📊 Database
+
+### **Schema Design**
+
+#### **Users Table**
 ```sql
--- Tabla de usuarios
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(100) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
 );
-
--- Índices para performance
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_created_at ON users(created_at);
 ```
 
-#### **Operaciones de Base de Datos**
-```python
-class UserRepository:
-    def __init__(self, supabase: Client):
-        self.supabase = supabase
-    
-    async def create_user(self, user_data: UserCreate) -> User:
-        response = self.supabase.table('users').insert({
-            'email': user_data.email,
-            'password_hash': self.hash_password(user_data.password),
-            'name': user_data.name
-        }).execute()
-        
-        return User(**response.data[0])
-    
-    async def get_user_by_email(self, email: str) -> Optional[User]:
-        response = self.supabase.table('users').select('*').eq('email', email).execute()
-        return User(**response.data[0]) if response.data else None
+#### **Sessions Table**
+```sql
+CREATE TABLE sessions (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    token_hash VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### **Migrations**
+
+#### **Using Supabase**
+```bash
+# Apply migrations through Supabase dashboard
+# Or use Supabase CLI
+supabase db push
 ```
 
 ## 🧪 Testing
 
 ### **Frontend Testing**
 
-#### **Jest + React Testing Library**
+#### **Unit Tests**
 ```typescript
-// __tests__/components/LoginForm.test.tsx
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+// components/__tests__/LoginForm.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
 import { LoginForm } from '../LoginForm';
 
 describe('LoginForm', () => {
-  it('should render login form', () => {
-    render(<LoginForm onLoginSuccess={jest.fn()} />);
-    
+  test('renders login form', () => {
+    render(<LoginForm />);
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
-  it('should show validation errors', async () => {
-    render(<LoginForm onLoginSuccess={jest.fn()} />);
+  test('submits form with correct data', async () => {
+    const mockSubmit = jest.fn();
+    render(<LoginForm onSubmit={mockSubmit} />);
     
-    const submitButton = screen.getByRole('button', { name: /login/i });
-    fireEvent.click(submitButton);
+    fireEvent.change(screen.getByLabelText(/email/i), {
+      target: { value: 'test@example.com' },
+    });
+    fireEvent.change(screen.getByLabelText(/password/i), {
+      target: { value: 'password123' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /login/i }));
     
-    await waitFor(() => {
-      expect(screen.getByText(/email is required/i)).toBeInTheDocument();
+    expect(mockSubmit).toHaveBeenCalledWith({
+      email: 'test@example.com',
+      password: 'password123',
     });
   });
 });
 ```
 
-#### **Testing de Hooks**
+#### **Integration Tests**
 ```typescript
-// __tests__/hooks/useAuth.test.ts
-import { renderHook, act } from '@testing-library/react';
-import { useAuth } from '../useAuth';
+// services/__tests__/api.test.ts
+import { apiService } from '../api';
 
-describe('useAuth', () => {
-  it('should initialize with null user', () => {
-    const { result } = renderHook(() => useAuth());
+describe('API Service', () => {
+  test('login returns user data', async () => {
+    const credentials = {
+      email: 'test@example.com',
+      password: 'password123'
+    };
     
-    expect(result.current.user).toBeNull();
-    expect(result.current.loading).toBe(true);
-  });
-
-  it('should login user successfully', async () => {
-    const { result } = renderHook(() => useAuth());
-    
-    await act(async () => {
-      await result.current.login({ email: 'test@example.com', password: 'password' });
-    });
-    
-    expect(result.current.user).toBeTruthy();
-    expect(result.current.loading).toBe(false);
+    const result = await apiService.login(credentials);
+    expect(result).toHaveProperty('access_token');
+    expect(result).toHaveProperty('user');
   });
 });
 ```
 
 ### **Backend Testing**
 
-#### **pytest + FastAPI TestClient**
+#### **Unit Tests**
 ```python
-# tests/test_auth.py
+# test_auth.py
 import pytest
 from fastapi.testclient import TestClient
 from main import app
 
 client = TestClient(app)
 
-def test_health_check():
-    response = client.get("/api/health")
-    assert response.status_code == 200
-    assert response.json()["status"] == "healthy"
-
 def test_login_success():
-    response = client.post("/api/auth/login", json={
+    response = client.post("/api/login", json={
         "email": "test@example.com",
         "password": "password123"
     })
@@ -605,204 +471,156 @@ def test_login_success():
     assert "access_token" in response.json()
 
 def test_login_invalid_credentials():
-    response = client.post("/api/auth/login", json={
+    response = client.post("/api/login", json={
         "email": "test@example.com",
         "password": "wrongpassword"
     })
     assert response.status_code == 401
 ```
 
-#### **Testing de Servicios**
+#### **Integration Tests**
 ```python
-# tests/test_services.py
-import pytest
-from app.services.auth_service import AuthService
-from app.repositories.user_repository import UserRepository
-
-@pytest.fixture
-def auth_service():
-    user_repo = UserRepository()
-    return AuthService(user_repo)
-
-def test_authenticate_user_success(auth_service):
-    # Arrange
-    email = "test@example.com"
-    password = "password123"
+# test_api_integration.py
+def test_full_auth_flow():
+    # 1. Register user
+    register_response = client.post("/api/register", json={
+        "email": "newuser@example.com",
+        "password": "password123",
+        "username": "newuser"
+    })
+    assert register_response.status_code == 200
     
-    # Act
-    user = auth_service.authenticate_user(email, password)
+    # 2. Login
+    login_response = client.post("/api/login", json={
+        "email": "newuser@example.com",
+        "password": "password123"
+    })
+    assert login_response.status_code == 200
     
-    # Assert
-    assert user is not None
-    assert user.email == email
-
-def test_authenticate_user_invalid_password(auth_service):
-    # Arrange
-    email = "test@example.com"
-    password = "wrongpassword"
-    
-    # Act
-    user = auth_service.authenticate_user(email, password)
-    
-    # Assert
-    assert user is None
+    # 3. Access protected endpoint
+    token = login_response.json()["access_token"]
+    protected_response = client.get(
+        "/api/protected",
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    assert protected_response.status_code == 200
 ```
 
 ## 🔍 Debugging
 
 ### **Frontend Debugging**
 
-#### **React Developer Tools**
+#### **React DevTools**
 ```bash
-# Instalar extensión en Chrome/Firefox
-# React Developer Tools
-# Redux DevTools (si usas Redux)
+# Install React Developer Tools browser extension
+# Use Components tab to inspect component tree
+# Use Profiler tab to analyze performance
 ```
 
 #### **Console Debugging**
 ```typescript
-// Debugging con console
-console.log('User data:', user);
-console.table(users); // Para arrays de objetos
-console.group('API Response'); // Para agrupar logs
-console.log(response);
-console.groupEnd();
-```
+// Add debug logs
+console.log('Component rendered with props:', props);
+console.log('API response:', response.data);
 
-#### **React DevTools Profiler**
-```typescript
-// Profiling de componentes
-import { Profiler } from 'react';
-
-const onRenderCallback = (id, phase, actualDuration) => {
-  console.log(`Component ${id} took ${actualDuration}ms to render`);
-};
-
-<Profiler id="UserProfile" onRender={onRenderCallback}>
-  <UserProfile user={user} />
-</Profiler>
+// Use debugger statement
+debugger; // Browser will pause here
 ```
 
 ### **Backend Debugging**
 
 #### **FastAPI Debug Mode**
 ```python
-# main.py
-import uvicorn
-
+# Enable debug mode
 if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=3000,
-        reload=True,  # Auto-reload en desarrollo
-        debug=True    # Debug mode
-    )
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=3000, reload=True)
 ```
 
-#### **Logging Avanzado**
+#### **Logging**
 ```python
 import logging
-from fastapi import Request
 
-# Configurar logging
+# Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-@app.middleware("http")
-async def log_requests(request: Request, call_next):
-    logger.info(f"Request: {request.method} {request.url}")
-    response = await call_next(request)
-    logger.info(f"Response: {response.status_code}")
-    return response
-
-@app.post("/api/auth/login")
-async def login(credentials: LoginRequest):
-    logger.debug(f"Login attempt for email: {credentials.email}")
-    # ... lógica de login
+# Use in code
+logger.debug("Processing request")
+logger.info("User logged in successfully")
+logger.error("Database connection failed")
 ```
 
-## 📦 Build y Deploy
+### **API Testing**
+
+#### **Swagger UI**
+```bash
+# Access interactive API documentation
+http://localhost:3000/docs
+```
+
+#### **Postman Collection**
+```json
+{
+  "info": {
+    "name": "WebApp Python API",
+    "description": "API collection for testing"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+## 📦 Build and Deploy
 
 ### **Frontend Build**
 
-#### **Configuración de Vite**
+#### **Production Build**
+```bash
+# Build for production
+cd frontend
+npm run build
+
+# Preview build
+npm run preview
+```
+
+#### **Build Optimization**
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
 export default defineConfig({
-  plugins: [react()],
   build: {
-    outDir: 'dist',
-    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-        },
-      },
-    },
-  },
-  server: {
-    port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-    },
-  },
+          utils: ['axios', 'react-hook-form']
+        }
+      }
+    }
+  }
 });
 ```
 
-#### **Optimización de Build**
-```bash
-# Build de producción
-npm run build
+### **Backend Deployment**
 
-# Analizar bundle
-npm run build -- --analyze
-
-# Preview del build
-npm run preview
-```
-
-### **Backend Build**
-
-#### **Requirements.txt**
-```txt
-fastapi==0.100.0
-uvicorn[standard]==0.23.0
-pydantic==2.0.0
-python-jose[cryptography]==3.3.0
-python-multipart==0.0.6
-python-dotenv==1.0.0
-supabase==1.0.3
-pytest==7.4.0
-pytest-asyncio==0.21.1
-```
-
-#### **Docker Support**
-```dockerfile
-# Dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### **Vercel Deployment**
-
-#### **Configuración de Vercel**
+#### **Vercel Configuration**
 ```json
 // vercel.json
 {
@@ -810,138 +628,147 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
   "builds": [
     {
       "src": "backend/main.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
-      }
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "backend/main.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1"
     }
   ]
 }
 ```
 
-## 🤝 Contribución
-
-### **Flujo de Trabajo**
-
-#### **1. Fork y Clone**
+#### **Environment Variables**
 ```bash
-# Fork el repositorio en GitHub
-# Clone tu fork
+# Production environment variables
+JWT_SECRET_KEY=your-super-secure-production-secret
+DATABASE_URL=postgresql://user:password@host:port/database
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-supabase-anon-key
+```
+
+## 🤝 Contribution
+
+### **Development Workflow**
+
+#### **1. Fork and Clone**
+```bash
+# Fork the repository on GitHub
+# Clone your fork
 git clone https://github.com/your-username/webapp-python.git
 cd webapp-python
 
-# Agregar upstream
+# Add upstream remote
 git remote add upstream https://github.com/original-owner/webapp-python.git
 ```
 
-#### **2. Crear Feature Branch**
+#### **2. Create Feature Branch**
 ```bash
-# Actualizar main
-git checkout main
-git pull upstream main
+# Create and switch to feature branch
+git checkout -b feature/your-feature-name
 
-# Crear feature branch
-git checkout -b feature/nueva-funcionalidad
+# Make your changes
+# Test thoroughly
+# Commit with descriptive message
+git commit -m "feat: add user profile management"
 ```
 
-#### **3. Desarrollo**
+#### **3. Submit Pull Request**
 ```bash
-# Hacer cambios
-# Ejecutar tests
-npm run test
-python -m pytest
+# Push to your fork
+git push origin feature/your-feature-name
 
-# Commit con conventional commits
-git commit -m "feat: add user profile component"
+# Create PR on GitHub
+# Fill out PR template
+# Request review
 ```
 
-#### **4. Pull Request**
-```bash
-# Push a tu fork
-git push origin feature/nueva-funcionalidad
-
-# Crear Pull Request en GitHub
-```
-
-### **Estándares de Código**
+### **Code Standards**
 
 #### **TypeScript/JavaScript**
 ```typescript
-// ESLint configuration
-{
-  "extends": [
-    "@typescript-eslint/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-function-return-type": "warn"
-  }
+// Use TypeScript for type safety
+interface User {
+  id: string;
+  email: string;
+  username: string;
 }
+
+// Use async/await for promises
+async function fetchUser(id: string): Promise<User> {
+  const response = await api.get(`/users/${id}`);
+  return response.data;
+}
+
+// Use meaningful variable names
+const userProfile = await getUserProfile(userId);
+const isAuthenticated = Boolean(accessToken);
 ```
 
 #### **Python**
 ```python
-# .flake8 configuration
-[flake8]
-max-line-length = 88
-extend-ignore = E203, W503
-exclude = .git,__pycache__,build,dist
+# Use type hints
+def create_user(user_data: UserCreate) -> UserResponse:
+    """Create a new user in the database."""
+    user = User(**user_data.dict())
+    db.add(user)
+    db.commit()
+    return UserResponse.from_orm(user)
+
+# Use docstrings
+def authenticate_user(email: str, password: str) -> Optional[User]:
+    """
+    Authenticate user with email and password.
+    
+    Args:
+        email: User's email address
+        password: User's password
+        
+    Returns:
+        User object if authentication successful, None otherwise
+    """
+    user = get_user_by_email(email)
+    if user and verify_password(password, user.password_hash):
+        return user
+    return None
 ```
 
-### **Conventional Commits**
+### **Commit Message Convention**
+
 ```bash
-# Estructura: <type>(<scope>): <description>
+# Format: type(scope): description
 
-# Ejemplos:
-feat: add user authentication
-fix: resolve CORS issue
-docs: update API documentation
-style: improve button styling
-refactor: optimize database queries
-test: add unit tests for auth service
-chore: update dependencies
+# Examples:
+feat(auth): add JWT token refresh functionality
+fix(api): resolve CORS issue with frontend
+docs(readme): update installation instructions
+style(components): improve button styling
+refactor(services): extract API client to separate module
+test(auth): add unit tests for login validation
+chore(deps): update dependencies to latest versions
 ```
 
----
+### **Review Process**
 
-## 📚 Recursos Adicionales
+#### **Before Submitting PR**
+- [ ] Code follows project standards
+- [ ] All tests pass
+- [ ] Documentation updated
+- [ ] No console errors
+- [ ] Responsive design tested
+- [ ] API endpoints tested
 
-### **Documentación Oficial**
-- [React Documentation](https://react.dev/)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Supabase Documentation](https://supabase.com/docs)
-
-### **Herramientas Útiles**
-- [TypeScript Playground](https://www.typescriptlang.org/play)
-- [Tailwind CSS Playground](https://play.tailwindcss.com/)
-- [Postman](https://www.postman.com/) - Testing de APIs
-- [Insomnia](https://insomnia.rest/) - Cliente REST
-
-### **Comunidad**
-- [React Community](https://reactjs.org/community)
-- [FastAPI Community](https://github.com/tiangolo/fastapi)
-- [Vercel Community](https://github.com/vercel/vercel)
+#### **PR Checklist**
+- [ ] Clear description of changes
+- [ ] Screenshots (if UI changes)
+- [ ] Test cases included
+- [ ] Breaking changes documented
+- [ ] Migration guide (if needed)
 
 ---
 
-**¡Gracias por contribuir al proyecto! 🚀** 
+**Last Updated:** December 2024  
+**Version:** 1.0.0  
+**Maintainer:** Development Team 
