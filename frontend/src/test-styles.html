@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Monokai Theme</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #272822 0%, #1d1e19 50%, #141511 100%);
+            color: #f8f8f2;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .test-card {
+            background-color: #1d1e19;
+            border: 1px solid #75715e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .test-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #a6e22e;
+            color: #272822;
+            border: none;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .test-input {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background-color: #1d1e19;
+            border: 1px solid #75715e;
+            border-radius: 8px;
+            color: #f8f8f2;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .text-accent { color: #66d9ef; }
+        .text-success { color: #a6e22e; }
+        .text-error { color: #f92672; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test del Tema Monokai</h1>
+        
+        <div class="test-card">
+            <h2>Colores del Tema</h2>
+            <p><span class="text-accent">Azul (Accent):</span> #66d9ef</p>
+            <p><span class="text-success">Verde (Success):</span> #a6e22e</p>
+            <p><span class="text-error">Rojo (Error):</span> #f92672</p>
+        </div>
+
+        <div class="test-card">
+            <h2>Componentes</h2>
+            <input type="text" class="test-input" placeholder="Campo de entrada">
+            <button class="test-button">Botón Primario</button>
+        </div>
+
+        <div class="test-card">
+            <h2>Estado</h2>
+            <p>Si ves este texto en blanco sobre fondo oscuro, el tema está funcionando correctamente.</p>
+        </div>
+    </div>
+</body>
+</html> 
