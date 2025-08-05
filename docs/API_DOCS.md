@@ -17,6 +17,15 @@ This document provides comprehensive documentation for the webapp API endpoints,
 
 The webapp API is built with **FastAPI** and provides authentication and user management functionality. The API uses JWT (JSON Web Tokens) for authentication and supports CORS for cross-origin requests.
 
+### **Application Interface**
+
+#### **Main Application**
+![Home Page Interface](images/homePage.png)
+
+#### **Authentication Interface**
+![Login Form](images/login.png)
+![Registration Form](images/register.png)
+
 ### Features
 
 - ✅ JWT-based authentication

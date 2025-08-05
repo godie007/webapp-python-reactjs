@@ -33,6 +33,15 @@ This guide will walk you through the process of deploying your **WebApp Python**
 
 ## ☁️ Vercel Deployment
 
+### **Application Interface**
+
+#### **Main Application**
+![Home Page Interface](images/homePage.png)
+
+#### **Authentication Pages**
+![Login Form](images/login.png)
+![Registration Form](images/register.png)
+
 ### **Method 1: Automatic Deployment (Recommended)**
 
 #### **1. Connect with GitHub**

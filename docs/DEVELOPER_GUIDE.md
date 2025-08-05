@@ -163,6 +163,17 @@ webapp-python/
 
 ## 🎨 Frontend Development
 
+### **Application Screenshots**
+
+#### **Home Page**
+![Home Page Interface](images/homePage.png)
+
+#### **Login Page**
+![Login Form](images/login.png)
+
+#### **Registration Page**
+![Registration Form](images/register.png)
+
 ### **Component Structure**
 
 #### **Component Guidelines**

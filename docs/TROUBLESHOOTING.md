@@ -2,6 +2,15 @@
 
 This guide provides solutions to common issues encountered when working with the webapp project (Python backend + React frontend).
 
+### **Application Interface**
+
+#### **Main Application**
+![Home Page Interface](images/homePage.png)
+
+#### **Authentication Interface**
+![Login Form](images/login.png)
+![Registration Form](images/register.png)
+
 ## Table of Contents
 
 - [Environment Setup Issues](#environment-setup-issues)
