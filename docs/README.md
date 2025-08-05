@@ -9,6 +9,7 @@ This directory contains comprehensive documentation for the WebApp Python projec
 - [🚀 **Deployment Guide**](DEPLOYMENT_GUIDE.md) - Production deployment guide
 - [🔧 **API Documentation**](API_DOCS.md) - Complete API reference
 - [🛠️ **Troubleshooting Guide**](TROUBLESHOOTING.md) - Common issues and solutions
+- [🎨 **Design System**](DESIGN_SYSTEM.md) - Complete design system and styling guidelines
 
 ### **Application Screenshots**
 - [🖼️ **Images Directory**](images/) - Application screenshots and diagrams
@@ -38,12 +39,13 @@ This directory contains comprehensive documentation for the WebApp Python projec
 
 ```
 docs/
-├── README.md                    # This file - Documentation index
-├── DEVELOPER_GUIDE.md          # Development guide
-├── DEPLOYMENT_GUIDE.md         # Deployment guide
-├── API_DOCS.md                # API documentation
-├── TROUBLESHOOTING.md         # Troubleshooting guide
-└── images/                    # Documentation images
+            ├── README.md                    # This file - Documentation index
+            ├── DEVELOPER_GUIDE.md          # Development guide
+            ├── DEPLOYMENT_GUIDE.md         # Deployment guide
+            ├── API_DOCS.md                # API documentation
+            ├── TROUBLESHOOTING.md         # Troubleshooting guide
+            ├── DESIGN_SYSTEM.md           # Design system and styling guidelines
+            └── images/                    # Documentation images
     ├── README.md              # Image documentation
     ├── homePage.png           # Home page screenshot
     ├── login.png              # Login page screenshot
